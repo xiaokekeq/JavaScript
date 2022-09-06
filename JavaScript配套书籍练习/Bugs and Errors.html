@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        "use strict";
+        //let name;
+        function canYouSpotThePromblem(){
+            for(let counter=0;counter<10;counter++){
+                console.log("Happy happy");
+            }
+        }
+        canYouSpotThePromblem()
+
+        // function Person(name){
+        //     this.name=name;
+        // }
+        // let ferdinand=Person("Ferdinand");
+        // console.log(name);
+        function test(label,body){
+            if(!body()) console.log(`Failed: ${label}`)
+        }
+        test("convert Latin text to uppercase",()=>{
+            return "αίρετε".toUpperCase()=="XAIPETE";
+        });
+        test("don't convert case-less characters",()=>{
+            return "مرحبا".toUpperCase() == "مرحبا";
+        });
+        function numberToString(n,base=10){
+            let result="",sign="";
+            if(n<0){
+                sign="-";
+                n=-n;
+            }
+            do{
+                result=String(n%base)+result;
+                n/=base;
+            }while(n>0);
+            return sign+result;
+        }
+        console.log(numberToString(13,10));
+        function promptNumber(question){
+            let result=Number(prompt(question));
+            if(Number.isNaN(result)){
+                return null;
+            }
+            else{
+                return result;
+             }
+        }
+        //console.log(promptNumber("How many trees do you see"));
+        function lastElement(array){
+            if(array.length==0){
+                return {
+                    failed:True
+                };
+            }else{
+                return {element:array[array.length-1]};
+            }
+        }
+        function promptDirection(question){
+            let result=prompt(question);
+            if(result.toLowerCase()=="left") {
+                return "L";
+            }
+            if(result.toLocaleLowerCase()=="Right"){
+                return "R";
+            }
+            throw new Error("Invalid direction: "+result);
+        }
+        function look(){
+            if(promptDirection("which way?")=="L"){
+                return "a house";
+            }
+            else{
+                return "two angry bears";
+            }
+        }
+        try{
+            console.log("You see",look());
+        }catch(error){
+            console.log("something went wrong: "+error);
+        }
+        const accounts={
+            a:100,
+            b:0,
+            c:20
+        };
+        function getAccount(){
+            let accountName=prompt("Enter an account name");
+            if(!accounts.hasOwnProperty(accountName)){
+                throw new Error(`No such account: ${accountName}`);
+            }
+            return accountName;
+        }
+        // function transfer(from,amount){
+        //     if(accounts[from]<amount)return;
+        //     accounts[from]-=amount;
+        //     accounts[getAccount()]+=amount;
+        // }
+        function transfer(from,amount){
+            if(accounts[from]<amount)return;
+            let progress=0;
+            try{
+                accounts[from]-=amount;
+                progress=1;
+                accounts[getAccount()]+=amount;
+                progress=2;
+            }finally{
+                if(progress==1){
+                    accounts[from]+=amount;
+                    return accounts;
+                }
+                return accounts;
+            }
+        }
+        //console.log(transfer(2,3));
+        // for(;;){
+        //     try{
+        //         let dir=peomtDirectioon("where?");
+        //         console.log("You chose",dir);
+        //         break;
+        //     }catch(e){
+        //         console.log("Not a valid direction. Try again");
+        //     }
+        // }
+        class InputError extends Error{}
+        function promptDirection(question){
+            let result=prompt(question);
+            if(result.toLowerCase()=="left") return "L";
+            if(result.toLowerCase()=="right") return "R";
+            throw new InputError("Invalid direction: "+result);
+        }
+        for(;;){
+            try{
+                let dir=promptDirection("Where?");
+                console.log("You chose ",dir);
+                break;
+            }catch(e){
+                if(e instanceof InputError){
+                    console.log("Not a valid direction. Try again");
+                }else{
+                    throw e;
+                }
+            }
+        }
+        function firstElement(array){
+            if(aray.length==0){
+                throw new Error("firstElement called with []");
+            }
+            return array[0];
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

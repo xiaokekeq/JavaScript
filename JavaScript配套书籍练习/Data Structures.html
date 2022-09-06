@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // function tableFor(event,journal){
+        //     let table=[0,0,0,0];
+        //     for(let i=0;i<journal.length;i++){
+        //         let entry=journal[i],index=0;
+        //         if(entry.events.includes(event)){
+        //             index+=1;
+        //         }
+        //         if(entry.squirrel){
+        //             index+=1
+        //         }
+        //         table[index]+=1;
+        //     }
+        //     return table;
+        // }
+        // console.log(tableFor("pizza", [76, 9, 4, 1]));
+        const score = {visitors: 0, home: 0};
+        score.visitors=1;
+           // console.log(score.visitors);
+        console.log([0,1,2,3,4].slice(2,4));
+        console.log([0,1,2,3,4].slice(2));
+        console.log([0,1,2,3,4].slice());
+        function remove(array,index){
+            return array.slice(0,index).concat(array.slice(index+1));
+        }
+        console.log(remove([0,1,2,3,4,5],2));
+
+        // Stringsandtheirproperties
+        console.log("coconuts".slice(4,7));
+        console.log("coconut".indexOf("u"));
+        console.log("one two three eee".indexOf("eee"));
+        console.log(" okay      \n ".trim());
+        console.log(String(6).padStart(5, "12"));
+        let words=["never","fully"];
+        console.log(["will",...words,"understand"]);
+        let string = JSON.stringify({squirrel: false,events: ["weekend"]});
+        console.log(string);
+        console.log(JSON.parse(string).events);
+        //Excrcises
+        function range(num1,num2){
+            let array=[];
+            for(let i=num1;i<=num2;i++){
+                array.push(i);
+            }
+            return array;
+        }
+        let array1=[];
+        function sum1(...array){
+            let sum=0;
+            for(let i of array){
+                    sum+=i;
+                }
+            return sum;
+        }
+        console.log(sum1(...range(1,10)));//这里是...加上后识别为一个数组，没有...会把这个【1，，，，，10】变成【【1，2，3，...，10】】
+        function sum(array,rest){
+            let sum=0;
+            // for(let number of array){
+            //     sum+=number;
+            // }
+            if(rest==undefined){
+                for(let i of array){
+                    sum+=i;
+                }
+            }
+            else{
+               
+                let num0=-Infinity;
+                for(let i of array){
+                    if(i>num0) {num0=i;}
+                }
+                for(let i=1;i<num0;i+=Math.abs(rest)){
+                    sum+=i;
+                    array1.push(i);
+                    console.log(i);
+                }
+            }
+            return sum;
+        }
+        
+        console.log(range(1,10));
+        console.log(sum(range(1,10)));
+        console.log(sum(range(1,10),2));
+        console.log(array1);
+
+       
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
